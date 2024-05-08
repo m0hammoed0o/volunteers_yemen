@@ -1,0 +1,35 @@
+{
+    
+    "Vounteers":"Vounteers",
+    "Organization":"Organization",
+    "Failedtologin":"Failed to log in",
+    "ok":"ok",
+    "YourEmail":"Your Email",
+    "Password":"Password",
+    "Login":"Login",
+    "ForgotPassword":"Forgot Password?",
+    "Loggedinsuccessfully":"Logged in successfully",
+    "orsigninusing":"or sign in using",
+    "Donthaveaccount":"Don’t have account |",
+    "Register":"Register",
+    "Searsh":"Searsh",
+    "ChangePassword":"Change Password",
+    "oldpassword":"old password",
+    "Pleaseenteryouroldpassword":"Please enter your old password",
+    "NewPassword":"New Password",
+    "PleaseenteryourNewpassword":"Please enter your new password",
+    "Passwordmustbe":"Password must be at least 8 characters long, include a number and a letter",
+    "ConfirmPassword":"Confirm  Password",
+    "Pleaseconfirmyournewpassword":"Please confirm your new password",
+    "Passwordsdonotmatch":"Passwords do not match",
+    "LogOut":"LogOut",
+    "Areyousureyouwanttologout":"Are you sure you want to log out?",
+    "Cancel":"Cancel",
+    "Profile":"Profile",
+    "Editprofileinformation":"Edit profile information",
+    "Language":"Language",
+    "Settings":"Settings",
+    "HelpSupport":"Help & Support"
+  
+  
+}

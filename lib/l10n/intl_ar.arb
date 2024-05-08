@@ -1,0 +1,40 @@
+{
+
+    "Vounteers":"المتطوعين",
+    "Organization":"المنظمة",
+    "Failedtologin":"فشل في تسجيل الدخول",
+    "ok":"نعم",
+    "YourEmail":"البريد الالكتروني",
+    "Password":"كلمة المرور",
+    "Login":"تسجيل",
+    "ForgotPassword":"هل نسيت كلمة السر؟",
+    "Loggedinsuccessfully":"تم تسجيل الدخول بنجاح",
+    "orsigninusing":"أو تسجيل الدخول باستخدام",
+    "Donthaveaccount":"| ليس لديك حساب",
+    "Register":"تسجل",
+    "Searsh":"بحث",
+    "ChangePassword":"تغيير كلمة المرور",
+    "oldpassword":"كلمة المرور القديمة",
+    "Pleaseenteryouroldpassword":"الرجاء إدخال كلمة المرور القديمة",
+    "NewPassword":"كلمة المرور الجديدة",
+    "PleaseenteryourNewpassword":"الرجاء إدخال كلمة المرور الجديدة",
+    "Passwordmustbe":"يجب أن تتكون من 8 أحرف على الأقل، وتتضمن رقمًا وحرفًا",
+    "ConfirmPassword":"تأكيد كلمة المرور",
+    "Pleaseconfirmyournewpassword":"الرجاء تأكيد كلمة المرور الجديدة الخاصة بك",
+    "Passwordsdonotmatch":"كلمة المرور غير مطابقة",
+    "LogOut":"تسجيل خروج",
+    "Areyousureyouwanttologout":"هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "Cancel":"إلغاء",
+    "Profile":"حسابي",
+    "Editprofileinformation":"تحرير معلومات الملف الشخصي",
+    "Language":"اللغة",
+    "Settings":"الاعدادات",
+    "HelpSupport":"الدعم والمساعدة"
+  
+    
+
+
+ 
+
+
+}
