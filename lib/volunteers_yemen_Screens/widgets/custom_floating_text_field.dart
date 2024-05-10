@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volunteers_yemen/core/utils/size_utils.dart';
+import 'package:volunteers_yemen/core/widgets/custom_text_style.dart';
 
 class CustomFloatingTextField extends StatefulWidget {
   CustomFloatingTextField({
@@ -86,7 +87,7 @@ class _CustomFloatingTextFieldState extends State<CustomFloatingTextField> {
           controller: widget.controller,
           focusNode: widget.focusNode ?? FocusNode(),
           autofocus: widget.autofocus!,
-          // style: widget.textStyle ?? CustomTextStyles.bodySmall2(context),
+          style: widget.textStyle ?? CustomTextStyles.bodySmall2(context),
           obscureText: _obscureText,
           textInputAction: widget.textInputAction,
           keyboardType: widget.textInputType,
@@ -98,7 +99,7 @@ class _CustomFloatingTextFieldState extends State<CustomFloatingTextField> {
 
   InputDecoration get decoration => InputDecoration(
         hintText: widget.hintText ?? "",
-        //    hintStyle: widget.hintStyle ?? CustomTextStyles.bodySmall2(context),
+        hintStyle: widget.hintStyle ?? CustomTextStyles.bodySmall2(context),
         labelText: widget.labelText ?? "",
         labelStyle: widget.labelStyle,
         prefixIcon: widget.prefix,

@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:volunteers_yemen/App_packages/App_packages.dart';
 import 'package:volunteers_yemen/api/http_url.dart';
-import 'package:volunteers_yemen/controllers/Login_controllers/login_model.dart';
+import 'package:volunteers_yemen/components/controllers/Login_controllers/login_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:volunteers_yemen/volunteers_yemen_Screens/Pages.dart/log_Organization_page.dart';
 
 class LoginController extends GetxController {
   final isLoading = false.obs;
@@ -30,7 +31,7 @@ class LoginController extends GetxController {
         await saveToken(accessToken);
 
         // Navigate to the home page after successful login
-        // Get.offAll(startApp());
+        Get.offAll(Log_Organization_Page());
       } else {
         // Handle login failure
         print('Login failed');

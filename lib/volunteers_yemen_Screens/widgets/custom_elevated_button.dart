@@ -55,7 +55,7 @@ class CustomElevatedButton extends BaseButton {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.h)),
       child: GradientButton(
         radius: 7,
-        onPressed: () {},
+        onPressed: onPressed,
         text: text,
         // textStyle: buttonTextStyle ??
         //     CustomTextStyles.titleLargePrimaryContainer(context),

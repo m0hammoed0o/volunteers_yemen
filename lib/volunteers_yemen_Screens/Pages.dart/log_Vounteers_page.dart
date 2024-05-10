@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:volunteers_yemen/App_packages/App_packages.dart';
-import 'package:volunteers_yemen/controllers/Login_controllers/login_controller.dart';
+import 'package:volunteers_yemen/components/controllers/Login_controllers/login_controller.dart';
 import 'package:http/http.dart' as http;
-import 'package:volunteers_yemen/controllers/Login_controllers/login_model.dart';
+import 'package:volunteers_yemen/components/controllers/Login_controllers/login_model.dart';
 import 'package:volunteers_yemen/core/utils/image_constant.dart';
 import 'package:volunteers_yemen/core/utils/size_utils.dart';
+import 'package:volunteers_yemen/core/widgets/custom_text_style.dart';
 import 'package:volunteers_yemen/generated/l10n.dart';
 import 'package:volunteers_yemen/routes/app_routes.dart';
 import 'package:volunteers_yemen/volunteers_yemen_Screens/widgets/custom_elevated_button.dart';
@@ -13,80 +14,44 @@ import 'package:volunteers_yemen/volunteers_yemen_Screens/widgets/custom_floatin
 import 'package:volunteers_yemen/volunteers_yemen_Screens/widgets/custom_image_view.dart';
 
 class Log_Vounteers_Page extends StatefulWidget {
-  const Log_Vounteers_Page({Key? key})
-      : super(
-          key: key,
-        );
-
   @override
   Log_Vounteers_PageState createState() => Log_Vounteers_PageState();
 }
 
-class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
-    with AutomaticKeepAliveClientMixin<Log_Vounteers_Page> {
+class Log_Vounteers_PageState extends State<Log_Vounteers_Page> {
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
   final LoginController controller = Get.put(LoginController());
-  final _storage = FlutterSecureStorage();
+  bool _isPasswordVisible = true; // Track whether the password is hidden or not
 
-  Future<dynamic> _login() async {
-    final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/auth/jwt/create/'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        'username': _username.text,
-        'password': _password.text,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(S.of(context).Loggedinsuccessfully)));
-
-      final responseData = json.decode(response.body);
-      await _storage.write(key: 'accessToken', value: responseData['access']);
-      await _storage.write(key: 'refreshToken', value: responseData['refresh']);
-
-      // For debugging: Check the tokens after successful login
-      // _checkTokenStorage();
-
-      // Navigate to UserInformationScreen with accessToken
-      //     Navigator.pushReplacement(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) => startApp(),
-      //       ),
-      //     );
-      //   } else {
-      //     ScaffoldMessenger.of(context)
-      //         .showSnackBar(SnackBar(content: Text(S.of(context).Failedtologin)));
-      //     print(S.of(context).ok);
-    }
+  // Method to handle tap on the screen
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
   }
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return GestureDetector(
+      // Wrap the entire screen in GestureDetector
+      onTap: () {
+        // Hide password when tapping anywhere on the screen
+        if (!_isPasswordVisible) {
+          _togglePasswordVisibility();
+        }
+      },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SizedBox(
           width: SizeUtils.width,
-          child: Form(
-            key: _formKey,
-            child: Container(
-              width: double.maxFinite,
-              child: Column(
-                children: [
-                  SizedBox(height: 20.v),
-                  _buildEightyThree(context),
-                ],
-              ),
+          child: Container(
+            width: double.maxFinite,
+            child: Column(
+              children: [
+                SizedBox(height: 20.v),
+                _buildEightyThree(context),
+              ],
             ),
           ),
         ),
@@ -107,7 +72,7 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
             contentPadding: EdgeInsets.fromLTRB(21.h, -8.v, 21.h, 35.v),
             controller: _username,
             labelText: S.of(context).YourEmail,
-            //   labelStyle: CustomTextStyles.bodySmall2(context),
+            labelStyle: CustomTextStyles.bodySmall2(context),
             hintText: S.of(context).YourEmail,
             textInputType: TextInputType.visiblePassword,
             prefix: Container(
@@ -127,7 +92,7 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
             contentPadding: EdgeInsets.fromLTRB(21.h, -8.v, 21.h, 35.v),
             controller: _password,
             labelText: S.of(context).Password,
-            //    labelStyle: CustomTextStyles.bodySmall2(context),
+            labelStyle: CustomTextStyles.bodySmall2(context),
             hintText: S.of(context).Password,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.visiblePassword,
@@ -146,9 +111,10 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
           SizedBox(height: 16.v),
           CustomElevatedButton(
             onPressed: () {
-              //_login();
               controller.login.value = LoginModule(
-                  username: _username.text, password: _password.text);
+                username: _username.text,
+                password: _password.text,
+              );
 
               controller.Login();
             },
@@ -161,11 +127,11 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
               padding: EdgeInsets.only(right: 5.h),
               child: InkWell(
                 onTap: () {
-                  //Navigator.pushNamed(context, AppRoutes.enterPasswordScreen);
+                  Navigator.pushNamed(context, AppRoutes.logOrganizationpage);
                 },
                 child: Text(
                   S.of(context).ForgotPassword,
-                  //    style: CustomTextStyles.bodySmallMontserratCyanA400(context),
+                  style: CustomTextStyles.bodySmallMontserratCyanA400(context),
                 ),
               ),
             ),
@@ -199,8 +165,8 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
                       padding: EdgeInsets.only(top: 1.v),
                       child: Text(
                         S.of(context).orsigninusing,
-                        //    style: CustomTextStyles.bodyMediumFigtreeBluegray400(
-                        ///   context),
+                        style: CustomTextStyles.bodyMediumFigtreeBluegray400(
+                            context),
                       ),
                     ),
                     SizedBox(
@@ -263,13 +229,13 @@ class Log_Vounteers_PageState extends State<Log_Vounteers_Page>
             children: [
               Text(
                 S.of(context).Donthaveaccount,
-                //  style: CustomTextStyles.bodySmallMontserratGray1006d(context),
+                style: CustomTextStyles.bodySmallMontserratGray1006d(context),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 5.h),
                 child: Text(
                   S.of(context).Register,
-                  //   style: CustomTextStyles.bodySmallMontserratCyanA400(context),
+                  style: CustomTextStyles.bodySmallMontserratCyanA400(context),
                 ),
               ),
             ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:volunteers_yemen/App_packages/App_packages.dart';
+import 'package:volunteers_yemen/core/theme/theme_helper.dart';
 import 'package:volunteers_yemen/core/utils/size_utils.dart';
 import 'package:volunteers_yemen/generated/l10n.dart';
+import 'package:volunteers_yemen/routes/app_routes.dart';
 import 'package:volunteers_yemen/volunteers_yemen_Screens/Pages.dart/log_in_page_tab_container_screen.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -47,13 +49,14 @@ class _MyAppState extends State<MyApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
           title: 'Volunteers.ye',
           debugShowCheckedModeBanner: false,
-          // initialRoute: AppRoutes.StartApp,
-          // routes: AppRoutes.routes,
-          home: LogInPageTabContainerScreen(),
+          initialRoute: AppRoutes.logInPageTabContainerScreen,
+          routes: AppRoutes.routes,
+          // home: LogInPageTabContainerScreen(),
         );
       },
     );
